@@ -1,0 +1,35 @@
+<div class="form_item_block">
+    <label>URL:<span class="asterisk">*</span></label>
+    <input type="text" ng-model="url" ng-required="true" tabindex="1"/>
+    <span class="form_error" ng-show="GOINPUTNAME[url].$error.server">
+        {{ GOINPUTNAME[url].$error.server }}
+    </span>
+</div>
+<div class="form_item_block">
+    <label>Username:</label>
+    <input type="text" ng-model="username" ng-required="false" tabindex="2"/>
+    <span class="form_error" ng-show="GOINPUTNAME[username].$error.server">
+        {{ GOINPUTNAME[username].$error.server }}
+    </span>
+</div>
+<div class="form_item_block">
+    <label>Password:</label>
+    <input type="password" ng-model="password" ng-required="false" tabindex="3"/>
+    <span class="form_error" ng-show="GOINPUTNAME[password].$error.server">
+        {{ GOINPUTNAME[password].$error.server }}
+    </span>
+</div>
+<div class="form_item_block">
+    <label>Files:</label>
+    <textarea ng-model="files" ng-required="false" tabindex="4" rows="5"></textarea>
+    <span class="form_error" ng-show="GOINPUTNAME[files].$error.server">
+        {{ GOINPUTNAME[files].$error.server }}
+    </span>
+</div>
+<div class="form_item_block">
+    <label>Destination:</label>
+    <input type="text" ng-model="destination" ng-required="false" tabindex="5"/>
+    <span class="form_error" ng-show="GOINPUTNAME[destination].$error.server">
+        {{ GOINPUTNAME[destination].$error.server }}
+    </span>
+</div>
