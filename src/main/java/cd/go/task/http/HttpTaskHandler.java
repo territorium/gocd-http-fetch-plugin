@@ -114,14 +114,13 @@ public class HttpTaskHandler implements RequestHandler {
         File file = new File(workingDir, fileName);
         client.storeTo(file);
 
-        response.addMessage("File '" + fileName + "' downloaded");
+        console.printLine("File '" + fileName + "' downloaded");
       } else {
-        response.addMessage(client.getResponseText());
+        response.addMessage(client.getResponseText()).setFailure();
       }
     } catch (Throwable e) {
-      response.addMessage(e.toString());
+      response.addMessage(e.toString()).setFailure();
     }
-    response.setFailure();
   }
 
   /**

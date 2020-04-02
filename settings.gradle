@@ -15,4 +15,4 @@
  * limitations under the License.
  */
 
-rootProject.name = 'http-task-plugin'
+rootProject.name = 'gocd-task-http'

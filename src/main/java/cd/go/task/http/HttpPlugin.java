@@ -74,7 +74,7 @@ public class HttpPlugin implements GoPlugin {
     try {
       switch (request.requestName()) {
         case Request.TASK_VIEW:
-          return new ViewHandler("Http Client", "/task.template.html").handle(request);
+          return new ViewHandler("Fetch Http Resource", "/task.template.html").handle(request);
 
         case Request.TASK_CONFIG:
           return handleConfig(request);
