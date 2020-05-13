@@ -12,7 +12,7 @@
  * the License.
  */
 
-package cd.go.common.request;
+package info.tol.gocd.util.request;
 
 public interface Request {
 

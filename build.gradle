@@ -31,14 +31,14 @@ def gitRevision = { ->
 project.ext.gitRevision = gitRevision()
 
 group = 'tol.info.gocd.plugin'
-version = '1.0.3'
+version = '1.0.4'
 
 // these values that go into plugin.xml
 project.ext.pluginDesc = [
   id         : 'cd.go.task.http',
   version    : project.version,
   goCdVersion: '18.7.0',
-  name       : 'Task plugin for HTTP Resources',
+  name       : 'HTTP-Fetch Task Plugin for GoCD',
   description: 'Plugin allows to fetch resources from a HTTP URI',
   vendorName : 'TOL GmbH',
   vendorUrl  : 'https://github.com/territorium/gocd-task-http.git'

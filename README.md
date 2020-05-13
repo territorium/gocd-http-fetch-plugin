@@ -19,7 +19,6 @@ The plugin accepts parameters:
 - *url*: a required parameter to define the HTTP location.
 - *username*: an optional username, if authentication is required.
 - *password*: an optional password, if authentication is required.
-- *password*: an optional password, if authentication is required.
 - *files*: an optional list of files to fetch, if ommited the url must define a path to a single file 
 
 ## Building the code base

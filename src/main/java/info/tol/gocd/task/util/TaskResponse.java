@@ -12,7 +12,7 @@
  * the License.
  */
 
-package cd.go.common.task;
+package info.tol.gocd.task.util;
 
 import com.thoughtworks.go.plugin.api.response.DefaultGoApiResponse;
 import com.thoughtworks.go.plugin.api.response.DefaultGoPluginApiResponse;
@@ -46,9 +46,9 @@ public class TaskResponse {
 
   public final GoPluginApiResponse build() {
     JsonObjectBuilder builder = Json.createObjectBuilder();
-    builder.add("success", !failure);
-    builder.add("message", String.join(", ", messages));
-    int status = failure ? DefaultGoApiResponse.INTERNAL_ERROR : DefaultGoApiResponse.SUCCESS_RESPONSE_CODE;
+    builder.add("success", !this.failure);
+    builder.add("message", String.join(", ", this.messages));
+    int status = this.failure ? DefaultGoApiResponse.INTERNAL_ERROR : DefaultGoApiResponse.SUCCESS_RESPONSE_CODE;
     return new DefaultGoPluginApiResponse(status, builder.build().toString());
   }
 }

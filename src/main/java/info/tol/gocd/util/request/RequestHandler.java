@@ -12,7 +12,7 @@
  * the License.
  */
 
-package cd.go.common.request;
+package info.tol.gocd.util.request;
 
 import com.thoughtworks.go.plugin.api.request.GoPluginApiRequest;
 import com.thoughtworks.go.plugin.api.response.GoPluginApiResponse;

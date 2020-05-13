@@ -1,8 +1,8 @@
 /**
- * 
+ *
  */
 
-package cd.go.common.util;
+package info.tol.gocd.util;
 
 import java.io.Closeable;
 import java.io.File;
@@ -24,7 +24,7 @@ public class HttpClient implements Closeable {
 
   /**
    * Creates a new {@link HttpClient}
-   * 
+   *
    * @param url
    * @param method
    */
@@ -34,7 +34,7 @@ public class HttpClient implements Closeable {
 
   /**
    * Creates a new {@link HttpClient}
-   * 
+   *
    * @param url
    * @param method
    */
@@ -90,7 +90,7 @@ public class HttpClient implements Closeable {
   public final void storeTo(File destination) throws IOException {
     byte[] buffer = new byte[4096];
     // opens input stream from the HTTP connection
-    try (InputStream inputStream = conn.getInputStream()) {
+    try (InputStream inputStream = this.conn.getInputStream()) {
       // opens an output stream to save into file
       try (FileOutputStream outputStream = new FileOutputStream(destination)) {
         int bytesRead = -1;
@@ -108,7 +108,7 @@ public class HttpClient implements Closeable {
 
   /**
    * Get a HEAD request.
-   * 
+   *
    * @param url
    */
   public static HttpClient head(String url) throws IOException {
@@ -119,7 +119,7 @@ public class HttpClient implements Closeable {
 
   /**
    * Get a GET request.
-   * 
+   *
    * @param url
    */
   public static HttpClient get(String url) throws IOException {

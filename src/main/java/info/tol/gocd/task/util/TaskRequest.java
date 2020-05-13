@@ -13,7 +13,7 @@
  * the specific language governing rights and limitations under the License.
  */
 
-package cd.go.common.task;
+package info.tol.gocd.task.util;
 
 import com.thoughtworks.go.plugin.api.request.GoPluginApiRequest;
 
@@ -22,7 +22,7 @@ import java.io.StringReader;
 import javax.json.Json;
 import javax.json.JsonObject;
 
-import cd.go.common.util.Environment;
+import info.tol.gocd.util.Environment;
 
 /**
  * Get the request for a task execution.
@@ -62,21 +62,21 @@ public class TaskRequest {
    * Gets the working directory.
    */
   public final String getWorkingDirectory() {
-    return workingDirectory;
+    return this.workingDirectory;
   }
 
   /**
    * Gets the environment variables
    */
   public final Environment getEnvironment() {
-    return environment;
+    return this.environment;
   }
 
   /**
    * Gets the environment variables
    */
   public final TaskConfig getConfig() {
-    return config;
+    return this.config;
   }
 
 
@@ -85,8 +85,8 @@ public class TaskRequest {
     JsonObject context = json.getJsonObject("context");
     JsonObject environment = context.getJsonObject("environmentVariables");
 
-    config.parse(json.getJsonObject("config"));
-    workingDirectory = context.getString("workingDirectory");
+    this.config.parse(json.getJsonObject("config"));
+    this.workingDirectory = context.getString("workingDirectory");
 
     for (String name : environment.keySet()) {
       this.environment.set(name, environment.getString(name));

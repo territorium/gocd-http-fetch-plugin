@@ -12,7 +12,7 @@
  * the License.
  */
 
-package cd.go.task.http;
+package info.tol.gocd.task.http;
 
 import com.thoughtworks.go.plugin.api.GoApplicationAccessor;
 import com.thoughtworks.go.plugin.api.GoPlugin;
@@ -30,9 +30,9 @@ import java.util.Arrays;
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 
-import cd.go.common.request.Request;
-import cd.go.common.request.ViewHandler;
-import cd.go.common.task.TaskConfigBuilder;
+import info.tol.gocd.task.util.TaskConfigBuilder;
+import info.tol.gocd.util.request.Request;
+import info.tol.gocd.util.request.ViewHandler;
 
 /**
  * GoPlugin interface represents Go plugin. It is necessary to implement this interface for any
@@ -74,7 +74,7 @@ public class HttpPlugin implements GoPlugin {
     try {
       switch (request.requestName()) {
         case Request.TASK_VIEW:
-          return new ViewHandler("Fetch Http Resource", "/task.template.html").handle(request);
+          return new ViewHandler("HTTP-Fetch", "/task.template.html").handle(request);
 
         case Request.TASK_CONFIG:
           return handleConfig(request);

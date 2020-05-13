@@ -13,7 +13,7 @@
  * the specific language governing rights and limitations under the License.
  */
 
-package cd.go.common.task;
+package info.tol.gocd.task.util;
 
 import com.thoughtworks.go.plugin.api.response.DefaultGoPluginApiResponse;
 import com.thoughtworks.go.plugin.api.response.GoPluginApiResponse;
@@ -65,7 +65,7 @@ public class TaskConfigBuilder {
    * @param required
    */
   public final TaskConfigBuilder addItem(String name, String value, boolean required) {
-    values.put(name, new Item(value, null, null, required, false));
+    this.values.put(name, new Item(value, null, null, required, false));
     return this;
   }
 
@@ -78,7 +78,7 @@ public class TaskConfigBuilder {
    */
   public final TaskConfigBuilder addItem(String name, String value, String display, String order, boolean required,
       boolean secure) {
-    values.put(name, new Item(value, order, display, required, secure));
+    this.values.put(name, new Item(value, order, display, required, secure));
     return this;
   }
 
@@ -87,8 +87,8 @@ public class TaskConfigBuilder {
    */
   public final GoPluginApiResponse build() {
     JsonObjectBuilder object = Json.createObjectBuilder();
-    for (String name : values.keySet()) {
-      Item value = values.get(name);
+    for (String name : this.values.keySet()) {
+      Item value = this.values.get(name);
 
       JsonObjectBuilder config = Json.createObjectBuilder();
       if (value.value != null) {

@@ -15,4 +15,4 @@
  * limitations under the License.
  */
 
-rootProject.name = 'gocd-task-http'
+rootProject.name = 'http-fetch-task-plugin'

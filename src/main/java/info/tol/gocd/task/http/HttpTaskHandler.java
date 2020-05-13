@@ -12,7 +12,7 @@
  * the License.
  */
 
-package cd.go.task.http;
+package info.tol.gocd.task.http;
 
 import com.thoughtworks.go.plugin.api.request.GoPluginApiRequest;
 import com.thoughtworks.go.plugin.api.response.GoPluginApiResponse;
@@ -23,10 +23,10 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import cd.go.common.request.RequestHandler;
-import cd.go.common.task.TaskRequest;
-import cd.go.common.task.TaskResponse;
-import cd.go.common.util.HttpClient;
+import info.tol.gocd.task.util.TaskRequest;
+import info.tol.gocd.task.util.TaskResponse;
+import info.tol.gocd.util.HttpClient;
+import info.tol.gocd.util.request.RequestHandler;
 
 /**
  * This message is sent by the GoCD agent to the plugin to execute the task.
@@ -82,11 +82,11 @@ public class HttpTaskHandler implements RequestHandler {
     // String password = task.getConfig().getValue("password");
     String destination = task.getConfig().getValue("destination");
 
-    console.printLine("Launching command on: " + task.getWorkingDirectory());
+    this.console.printLine("Launching command on: " + task.getWorkingDirectory());
     // console.printEnvironment(task.getEnvironment().toMap());
 
     File workingDir = new File(task.getWorkingDirectory()).getAbsoluteFile();
-    if (destination != null && !destination.trim().isEmpty()) {
+    if ((destination != null) && !destination.trim().isEmpty()) {
       workingDir = new File(workingDir, destination);
       workingDir.mkdirs();
     }
@@ -100,7 +100,7 @@ public class HttpTaskHandler implements RequestHandler {
 
   /**
    * Fetch the files.
-   * 
+   *
    * @param url
    * @param workingDir
    * @param messages
@@ -109,12 +109,12 @@ public class HttpTaskHandler implements RequestHandler {
     try (HttpClient client = HttpClient.get(url)) {
       // always check HTTP response code first
       if (client.getResponseCode() == HttpURLConnection.HTTP_OK) {
-        String fileName = getFilename(url, client.getHeader("Content-Disposition"));
+        String fileName = HttpTaskHandler.getFilename(url, client.getHeader("Content-Disposition"));
 
         File file = new File(workingDir, fileName);
         client.storeTo(file);
 
-        console.printLine("File '" + fileName + "' downloaded");
+        this.console.printLine("File '" + fileName + "' downloaded");
       } else {
         response.addMessage(client.getResponseText()).setFailure();
       }
@@ -125,14 +125,15 @@ public class HttpTaskHandler implements RequestHandler {
 
   /**
    * Get the files to download.
-   * 
+   *
    * @param config
    */
   private static List<String> getUrls(String url, String files) {
     List<String> urls = new ArrayList<>();
-    if (files != null && !files.trim().isEmpty()) {
-      if (!url.endsWith("/"))
+    if ((files != null) && !files.trim().isEmpty()) {
+      if (!url.endsWith("/")) {
         url += "/";
+      }
 
       for (String filename : files.split("[,\\n]")) {
         if (!filename.trim().isEmpty()) {
@@ -149,7 +150,7 @@ public class HttpTaskHandler implements RequestHandler {
 
   /**
    * Get the filename.
-   * 
+   *
    * @param url
    * @param disposition
    */
